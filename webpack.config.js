@@ -1,13 +1,22 @@
 var path = require("path")
-console.log(path.resolve())
-console.log("------------------")
+
 module.exports = {
-    entry: {
-        entry1: './src/pages/index/index.js',
-        // entry2:'./src/pages/alert/index.js',
-    },
+    entry: path.resolve(__dirname, './src/pages/alert/index.js'),
     output: {
-        path: path.resolve() + "/dist",
-        filename: "bundle.js"
+        path: path.resolve(__dirname, './dist'),
+        filename: 'bundle',
+        chunkFilename: '[id].bundle.js',
+    },
+    module: {
+        rules: [
+            {
+                test: /\.less$/,
+                use: [
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader' },
+                    { loader: 'less-loader' },
+                ]
+            }
+        ],
     }
 }

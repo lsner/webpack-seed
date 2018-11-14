@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/lsner/webpack-seed/issues"
   },
-  "homepage": "https://github.com/lsner/webpack-seed#readme"
+  "homepage": "https://github.com/lsner/webpack-seed#readme",
+  "dependencies": {
+    "css-loader": "^1.0.1",
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
+    "style-loader": "^0.23.1"
+  }
 }
