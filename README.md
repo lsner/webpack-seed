@@ -27,7 +27,7 @@ path.join()可以连接任意多个路径字符串。要连接的多个路径可
 let myPath1 = path.join(__dirname,'alert',"haha"); // /Users/xmly/LSN/webpack-seed/alert/haha
 let myPath3 = path.join('./src/pages','alert',{}); // 会报错 Path must be a string. Received {}
 ```
-## entry 入口可以是单个字符串、或者一个数组但最好是object
+## 2.entry 入口可以是单个字符串、或者一个数组但最好是object
 
 ```javascript
 entry: './src/pages/index/index.js'  
@@ -40,7 +40,7 @@ entry: {
 }
 ```
 
-## output 常用的几个参数
+## 3.output 常用的几个参数
 >path:表示生成文件的根目录，需要传入一个绝对路径,**path参数和后面的filename参数共同组成入口文件的完整路径。**  
 >publicPath:用于生成css/js/图片/字体文件等资源的路径，既可以是相对路径，也可以是绝对路径(当你的html文件跟其它资源放在不同的域名下的时候，就应该用绝对路径了，这种情况非常多见于后端渲染模板的场景。)  
 >filename:表示的是如何命名生成出来的入口文件  
@@ -54,3 +54,18 @@ entry: {
       chunkFilename: '[id].bundle.js',
     },
 ```
+## 4.如果特别需要的话，可以结合extract-text-webpack-plugin 单独打包css/less/sass，避免所有的样式与js一起打包进一个bundle
+## 5.使用webpack也可以打包图片、字体
+使用url-loader时，limit参数表示图片超过一定字节就使用url-loader来处理，否则默认使用file-loader处理
+```javasctipt
+
+webpack中的配置
+{
+        // 图片加载器，雷同file-loader，更适合图片，可以将较小的图片转成base64，减少http请求
+        // 如下配置，将小于8192byte的图片转成base64码
+        test: /\.(png|jpg|gif)$/,
+        loader: 'url-loader?limit=8192&name=./static/img/[hash].[ext]',
+}
+```
+编译的结果如下  
+![avatar](./src/img/img-build.jpg)
