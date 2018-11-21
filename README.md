@@ -69,3 +69,19 @@ webpack中的配置
 ```
 编译的结果如下  
 ![avatar](./src/img/img-build.jpg)
+
+## 6.使用CommonsChunkPlugin来避免重复打包
+
+```javasctipt
+//打包公共代码,避免重复打包,比如很多页面都引入一个共同的组件
+new webpack.optimize.CommonsChunkPlugin({
+    name: 'common', //公共抽离的js模块名称
+    filename: '[name].bundle.js' , //生成后的文件名，虽说用了[name]，但实际上就是'common.bundle.js'了
+    minChunks:2, //设定某个js模块被几个页面引用，才算是公共代码
+})
+
+```
+
+
+
+注：webpack-bundle-analyzer wepback的可视化资源分析工具
